@@ -25,18 +25,38 @@ const Gallery: React.FC = () => {
   const [isGridVisible, setIsGridVisible] = useState(false);
   const [staggerRun, setStaggerRun] = useState(0);
   const gridRef = useRef<HTMLDivElement | null>(null);
+  const scrollYRef = useRef(0);
 
   const filteredProjects = useMemo(
     () => (activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)),
     [activeCategory]
   );
 
+  const isLightboxOpen = selectedProject !== null;
+
   useEffect(() => {
-    document.body.style.overflow = selectedProject ? 'hidden' : 'auto';
+    if (!isLightboxOpen) return;
+
+    scrollYRef.current = window.scrollY;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+
     return () => {
-      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, scrollYRef.current);
     };
-  }, [selectedProject]);
+  }, [isLightboxOpen]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
