@@ -42,13 +42,13 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm border-b border-stone-100 py-4' : 'bg-transparent py-8'
+        isScrolled ? 'bg-white/95 backdrop-blur-sm border-b border-stone-100 py-4' : 'bg-transparent py-4 md:py-8'
       }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         {/* Logo */}
         <a href="#home" className={`z-50 relative transition-colors ${isScrolled || isMobileMenuOpen ? 'text-ink' : 'text-white mix-blend-difference'}`}>
-          <span className="block text-[1.05rem] md:text-2xl font-serif tracking-[0.12em] md:tracking-[0.16em] uppercase font-bold">Thalisson Photo</span>
+          <span className="block text-[0.92rem] md:text-2xl font-serif tracking-[0.08em] md:tracking-[0.16em] uppercase font-bold">Thalisson Photo</span>
         </a>
 
         {/* Desktop Menu */}
