@@ -199,10 +199,14 @@ const Gallery: React.FC = () => {
 
       {/* Lightbox Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-[100] bg-stone-900/95 flex items-center justify-center" onClick={closeLightbox}>
+        <div
+          className="fixed inset-0 z-[300] bg-black/98 backdrop-blur-sm flex items-center justify-center overscroll-none"
+          style={{ touchAction: 'none' }}
+          onClick={closeLightbox}
+        >
           <button 
             onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white hover:text-stone-300 transition-colors z-[110]"
+            className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-stone-300 transition-colors z-[310] w-11 h-11 rounded-full border border-white/20 bg-black/35 backdrop-blur-sm flex items-center justify-center"
           >
             <X size={32} strokeWidth={1} />
           </button>
@@ -214,11 +218,11 @@ const Gallery: React.FC = () => {
             <ChevronLeft size={48} strokeWidth={0.5} />
           </button>
 
-          <div className="max-w-5xl max-h-[85vh] p-4 relative" onClick={(e) => e.stopPropagation()}>
+          <div className="w-[92vw] max-w-4xl max-h-[88vh] p-4 relative" onClick={(e) => e.stopPropagation()}>
              <img 
                src={selectedProject.imageUrl} 
                alt={selectedProject.title} 
-               className="max-h-[80vh] w-auto shadow-2xl mx-auto"
+               className="max-h-[72vh] md:max-h-[80vh] w-full object-contain shadow-2xl mx-auto"
              />
              <div className="text-center mt-6 text-white">
                 <h3 className="text-2xl font-serif italic">{selectedProject.title}</h3>
