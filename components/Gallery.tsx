@@ -26,6 +26,8 @@ const Gallery: React.FC = () => {
   const [staggerRun, setStaggerRun] = useState(0);
   const gridRef = useRef<HTMLDivElement | null>(null);
   const scrollYRef = useRef(0);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
 
   const filteredProjects = useMemo(
     () => (activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)),
@@ -111,6 +113,26 @@ const Gallery: React.FC = () => {
 
   const closeLightbox = () => {
     setSelectedProject(null);
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.changedTouches[0];
+    touchStartXRef.current = touch.clientX;
+    touchStartYRef.current = touch.clientY;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartXRef.current;
+    const deltaY = touch.clientY - touchStartYRef.current;
+
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+
+    if (Math.abs(deltaX) < 50 || Math.abs(deltaY) > 60) return;
+    navigateLightbox(deltaX < 0 ? 'next' : 'prev');
   };
 
   const navigateLightbox = (direction: 'next' | 'prev') => {
@@ -220,7 +242,12 @@ const Gallery: React.FC = () => {
             <ChevronLeft size={48} strokeWidth={0.5} />
           </button>
 
-          <div className="w-[92vw] max-w-4xl max-h-[88vh] p-4 relative" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="w-[92vw] max-w-4xl max-h-[88vh] p-4 relative"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <img 
               src={selectedProject.imageUrl} 
               alt={selectedProject.title} 
@@ -229,6 +256,23 @@ const Gallery: React.FC = () => {
             <div className="text-center mt-6 text-stone-900">
               <h3 className="text-2xl font-serif italic">{selectedProject.title}</h3>
               <p className="text-sm uppercase tracking-widest text-stone-500 mt-1">{selectedProject.category} | {selectedProject.year}</p>
+            </div>
+
+            <div className="mt-5 flex items-center justify-center gap-3 md:hidden">
+              <button
+                type="button"
+                onClick={() => navigateLightbox('prev')}
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-800 text-xs uppercase tracking-[0.16em]"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                onClick={() => navigateLightbox('next')}
+                className="px-4 py-2 rounded-full border border-stone-300 text-stone-800 text-xs uppercase tracking-[0.16em]"
+              >
+                Proxima
+              </button>
             </div>
           </div>
 
