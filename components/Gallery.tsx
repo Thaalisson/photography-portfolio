@@ -38,6 +38,7 @@ const Gallery: React.FC = () => {
     if (!isLightboxOpen) return;
 
     scrollYRef.current = window.scrollY;
+    document.body.classList.add('lightbox-open');
     document.documentElement.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollYRef.current}px`;
@@ -47,6 +48,7 @@ const Gallery: React.FC = () => {
     document.body.style.overflow = 'hidden';
 
     return () => {
+      document.body.classList.remove('lightbox-open');
       document.documentElement.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
@@ -200,39 +202,39 @@ const Gallery: React.FC = () => {
       {/* Lightbox Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-[300] bg-black/98 backdrop-blur-sm flex items-center justify-center overscroll-none"
+          className="fixed inset-0 z-[300] bg-[#f4f1ee] flex items-center justify-center overscroll-none"
           style={{ touchAction: 'none' }}
           onClick={closeLightbox}
         >
           <button 
             onClick={closeLightbox}
-            className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-stone-300 transition-colors z-[310] w-11 h-11 rounded-full border border-white/20 bg-black/35 backdrop-blur-sm flex items-center justify-center"
+            className="absolute top-[max(12px,env(safe-area-inset-top))] right-[max(12px,env(safe-area-inset-right))] md:top-6 md:right-6 text-stone-900 hover:text-black transition-colors z-[310] w-11 h-11 rounded-full border border-stone-300 bg-white/80 flex items-center justify-center"
           >
-            <X size={32} strokeWidth={1} />
+            <X size={24} strokeWidth={1.75} />
           </button>
 
           <button 
             onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }}
-            className="absolute left-4 text-white hover:text-stone-300 transition-colors hidden md:block"
+            className="absolute left-4 text-stone-800 hover:text-black transition-colors hidden md:block"
           >
             <ChevronLeft size={48} strokeWidth={0.5} />
           </button>
 
           <div className="w-[92vw] max-w-4xl max-h-[88vh] p-4 relative" onClick={(e) => e.stopPropagation()}>
-             <img 
-               src={selectedProject.imageUrl} 
-               alt={selectedProject.title} 
-               className="max-h-[72vh] md:max-h-[80vh] w-full object-contain shadow-2xl mx-auto"
-             />
-             <div className="text-center mt-6 text-white">
-                <h3 className="text-2xl font-serif italic">{selectedProject.title}</h3>
-                <p className="text-sm uppercase tracking-widest text-stone-400 mt-1">{selectedProject.category} | {selectedProject.year}</p>
-             </div>
+            <img 
+              src={selectedProject.imageUrl} 
+              alt={selectedProject.title} 
+              className="max-h-[72vh] md:max-h-[80vh] w-full object-contain shadow-2xl mx-auto"
+            />
+            <div className="text-center mt-6 text-stone-900">
+              <h3 className="text-2xl font-serif italic">{selectedProject.title}</h3>
+              <p className="text-sm uppercase tracking-widest text-stone-500 mt-1">{selectedProject.category} | {selectedProject.year}</p>
+            </div>
           </div>
 
           <button 
             onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }}
-            className="absolute right-4 text-white hover:text-stone-300 transition-colors hidden md:block"
+            className="absolute right-4 text-stone-800 hover:text-black transition-colors hidden md:block"
           >
             <ChevronRight size={48} strokeWidth={0.5} />
           </button>
