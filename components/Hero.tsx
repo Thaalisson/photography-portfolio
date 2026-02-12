@@ -43,18 +43,19 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className={`relative h-full container mx-auto px-6 flex flex-col justify-center items-center text-center text-white transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h2 className="text-[11px] md:text-sm uppercase tracking-[0.3em] mb-5 opacity-85 drop-shadow-md">
+      <div className={`relative h-full container mx-auto px-6 pt-28 pb-20 md:py-0 flex flex-col justify-start md:justify-center items-center text-center text-white transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <h2 className="hidden sm:block text-[11px] md:text-sm uppercase tracking-[0.3em] mb-4 md:mb-5 opacity-85 drop-shadow-md">
           Wedding Photographer
         </h2>
-        <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif mb-4 md:mb-6 tracking-tight leading-[0.95] drop-shadow-lg">
-          Thalisson Photo
+        <h1 className="text-[2.9rem] sm:text-6xl md:text-8xl lg:text-9xl font-serif mb-3 md:mb-6 tracking-tight leading-[0.92] drop-shadow-lg">
+          <span className="block sm:inline">Thalisson</span>{' '}
+          <span className="block sm:inline">Photo</span>
         </h1>
-        <div className="h-[1px] w-20 bg-white/65 mb-6 shadow-sm"></div>
-        <p className="max-w-[760px] text-3xl sm:text-4xl md:text-5xl font-script mb-6 opacity-95 drop-shadow-md leading-none">
+        <div className="h-[1px] w-16 sm:w-20 bg-white/65 mb-5 md:mb-6 shadow-sm"></div>
+        <p className="max-w-[760px] text-[2.2rem] sm:text-4xl md:text-5xl font-script mb-4 md:mb-6 opacity-95 drop-shadow-md leading-none">
           Preserving your memories for a lifetime
         </p>
-        <p className="max-w-2xl text-lg md:text-xl font-serif italic mb-10 md:mb-12 opacity-85 drop-shadow-md leading-relaxed">
+        <p className="max-w-xl md:max-w-2xl text-base sm:text-lg md:text-xl font-serif italic mb-8 md:mb-12 opacity-85 drop-shadow-md leading-relaxed">
           Timeless wedding stories shaped by light and emotion.
         </p>
         

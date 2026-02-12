@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <a href="#home" className={`z-50 relative transition-colors ${isScrolled || isMobileMenuOpen ? 'text-ink' : 'text-white mix-blend-difference'}`}>
-          <span className="block text-lg md:text-2xl font-serif tracking-[0.16em] uppercase font-bold">Thalisson Photo</span>
+          <span className="block text-[1.05rem] md:text-2xl font-serif tracking-[0.12em] md:tracking-[0.16em] uppercase font-bold">Thalisson Photo</span>
         </a>
 
         {/* Desktop Menu */}
