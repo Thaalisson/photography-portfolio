@@ -17,10 +17,10 @@ const Newsletter: React.FC = () => {
         </div>
 
         {/* Content Side */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-12 lg:p-24 bg-white relative">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 lg:p-24 bg-white relative">
           <FadeIn>
             <div className="max-w-md">
-              <h2 className="text-5xl lg:text-6xl font-serif text-ink mb-6 leading-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-ink mb-6 leading-tight">
                 Subscribe <br/>
                 <span className="italic font-light">to my</span> <br/>
                 Newsletter!
@@ -38,7 +38,7 @@ const Newsletter: React.FC = () => {
                 />
                 <button 
                   type="submit" 
-                  className="bg-ink text-white px-8 py-3 text-sm uppercase tracking-editorial hover:bg-stone-800 transition-colors"
+                  className="bg-ink text-white px-8 py-3 text-sm uppercase tracking-[0.18em] hover:bg-stone-800 transition-colors"
                 >
                   Subscribe
                 </button>
@@ -47,7 +47,7 @@ const Newsletter: React.FC = () => {
           </FadeIn>
 
           {/* Floating Chat Button Mimic */}
-          <div className="absolute bottom-8 right-8">
+          <div className="hidden md:block md:absolute md:bottom-8 md:right-8">
             <button className="bg-white border border-stone-200 shadow-xl px-6 py-3 rounded-full flex items-center gap-3 hover:scale-105 transition-transform">
               <MessageCircle size={20} className="text-ink fill-current" />
               <span className="font-serif italic text-ink">Let's Chat!</span>

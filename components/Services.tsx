@@ -44,9 +44,11 @@ const Services: React.FC = () => {
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 beige-sheen opacity-70" />
       <div className="container mx-auto px-6">
         <FadeIn>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20">
-            <h2 className="text-4xl md:text-5xl font-serif text-ink">Services & <br/> <span className="italic text-stone-500">Investment</span></h2>
-            <p className="text-stone-500 max-w-sm mt-6 md:mt-0 font-light text-sm leading-relaxed text-right">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-16 md:mb-20 items-start">
+            <h2 className="text-4xl md:text-5xl font-serif text-ink text-left">
+              Services & <br/> <span className="italic text-stone-500">Investment</span>
+            </h2>
+            <p className="text-stone-500 max-w-sm font-light text-lg md:text-sm leading-relaxed text-left md:text-right">
               Tailored experiences for those who value the art of photography and the preservation of memory.
             </p>
           </div>
@@ -55,8 +57,8 @@ const Services: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <FadeIn key={service.id} delay={index * 100}>
-              <div className="bg-white/90 backdrop-blur-sm p-8 h-full min-h-[320px] flex flex-col justify-between transition-all duration-500 group border border-stone-200 hover:border-[#d0b79c] hover:-translate-y-1 hover:shadow-[0_20px_38px_-24px_rgba(113,82,50,0.42)]">
-                <div className="text-stone-400 group-hover:text-ink transition-colors duration-500">
+              <div className="service-card bg-white/90 backdrop-blur-sm p-8 h-full min-h-[320px] flex flex-col justify-between transition-all duration-500 group border border-stone-200 hover:border-[#d0b79c] hover:-translate-y-1 hover:shadow-[0_20px_38px_-24px_rgba(113,82,50,0.42)]">
+                <div className="service-icon text-stone-400 group-hover:text-[#b8956e] transition-colors duration-500">
                   {service.icon}
                 </div>
                 
